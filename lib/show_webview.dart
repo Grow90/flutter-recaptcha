@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
 class ShowWebView extends StatefulWidget {
-  ShowWebView(
-      {Key? key, required this.action})
+  ShowWebView({Key? key, required this.action, required this.site_id})
       : super(key: key);
 
   final String action;
+  final String site_id;
   @override
   _ShowWebViewState createState() => _ShowWebViewState();
 }
@@ -28,12 +28,16 @@ class _ShowWebViewState extends State<ShowWebView> {
           },
           onPageFinished: (s) {
             if (s.startsWith("https://superflow.run/auth/captchaDone/")) {
-              Navigator.pop(context, s.replaceFirst("https://superflow.run/auth/captchaDone/", ""));
+              Navigator.pop(
+                  context,
+                  s.replaceFirst(
+                      "https://superflow.run/auth/captchaDone/", ""));
             }
           },
         ),
       )
-      ..loadRequest(Uri.parse("https://superflow.run/auth/captchaUser/auth"));
+      ..loadRequest(Uri.parse(
+          "https://superflow.run/auth/captchaUser/auth/${widget.site_id}"));
   }
 
   @override
@@ -49,8 +53,8 @@ class _ShowWebViewState extends State<ShowWebView> {
                 return value < 1
                     ? LinearProgressIndicator(
                         backgroundColor: Colors.grey,
-                        valueColor: new AlwaysStoppedAnimation<Color>(
-                            Colors.indigo),
+                        valueColor:
+                            new AlwaysStoppedAnimation<Color>(Colors.indigo),
                         value: value,
                       )
                     : Container();
