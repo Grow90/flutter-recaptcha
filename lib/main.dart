@@ -20,7 +20,6 @@ class MyApp extends StatelessWidget {
         ),
         routes: {
           '/': (context) => MyHomePage(),
-          '/showWebView': (context) => ShowWebView(),
         });
   }
 }
@@ -43,7 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   getCaptcha() async {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final result = await Navigator.push(context, MaterialPageRoute(builder: (_) => ShowWebView()));
+      final result = await Navigator.push(context, MaterialPageRoute(builder: (_) => ShowWebView(action: "auth",)));
+      print(result);
       setState(() {
         _result = result ?? ''; // Update the result variable with the obtained result
       });

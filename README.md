@@ -12,6 +12,6 @@
 ```
 4. Call the ShowWebView widget in your project
 ```dart
-      final token = await Navigator.push(context, MaterialPageRoute(builder: (_) => ShowWebView()));
+      final result = await Navigator.push(context, MaterialPageRoute(builder: (_) => ShowWebView(action: "auth",)));
 ```
 

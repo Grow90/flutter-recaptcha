@@ -3,9 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 class ShowWebView extends StatefulWidget {
   ShowWebView(
-      {Key? key})
+      {Key? key, required this.action})
       : super(key: key);
 
+  final String action;
   @override
   _ShowWebViewState createState() => _ShowWebViewState();
 }
